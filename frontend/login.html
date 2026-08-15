@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YouthPulse — Yoshlar bandligi monitoringi tizimiga kirish." />
+  <title>Kirish — YouthPulse GovTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="gov-bg gov-pattern login-page-bg">
+
+  <div class="login-card">
+
+    <div class="flex items-center justify-between mb-6">
+
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white text-sm font-bold">YP</div>
+        <span class="text-xs text-slate-500 font-medium leading-tight">Nexus30<br/>Hackathon 2026</span>
+      </div>
+
+      <div class="lang-toggle" role="group" aria-label="Til / Язык">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+    </div>
+
+    <div class="text-center mb-6">
+      <div class="flex items-center justify-center gap-2 mb-1">
+        <span class="text-2xl" aria-hidden="true">⚡</span>
+        <h1 class="text-2xl font-extrabold logo-gradient tracking-tight" id="brand-title">YouthPulse</h1>
+      </div>
+      <p class="text-sm text-slate-500 font-medium" id="brand-subtitle">
+        Yoshlar Bandligi Monitoring Tizimi
+      </p>
+      <div class="mt-2.5 inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 text-sky-700 text-xs font-medium px-3 py-1 rounded-full">
+        <span aria-hidden="true">🏛️</span>
+        <span id="gov-label">Nexus30 Hackathon 2026 - GovTech YouthPulse</span>
+      </div>
+    </div>
+
+    <div class="auth-tabs" role="tablist" aria-label="Kirish / Ro'yxatdan o'tish">
+      <button
+        id="tab-login-btn"
+        class="auth-tab active"
+        role="tab"
+        aria-selected="true"
+        aria-controls="form-login"
+        onclick="switchTab('login')"
+      >Kirish</button>
+      <button
+        id="tab-register-btn"
+        class="auth-tab"
+        role="tab"
+        aria-selected="false"
+        aria-controls="form-register"
+        onclick="switchTab('register')"
+      >Ro'yxatdan o'tish</button>
+    </div>
+
+    <form id="login-form" role="tabpanel" aria-labelledby="tab-login-btn" novalidate>
+
+      <div id="login-alert" class="hidden alert alert-error mb-4" role="alert" aria-live="polite"></div>
+
+      <div class="mb-4">
+        <label class="login-label" for="input-username" id="lbl-username">
+          Foydalanuvchi nomi
+        </label>
+        <input
+          type="text" id="input-username" name="username"
+          class="login-input" autocomplete="username"
+          placeholder="admin yoki istalgan login"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="login-label" for="input-password" id="lbl-password">
+          Parol
+        </label>
+        <input
+          type="password" id="input-password" name="password"
+          class="login-input" autocomplete="current-password"
+          placeholder="••••••"
+          required
+        />
+        <p class="text-xs text-slate-400 mt-1.5">
+          💡 Demo parol: <span class="font-mono font-semibold text-sky-600">12345</span>
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <label class="login-label" for="input-role" id="lbl-role">
+          Lavozim
+        </label>
+        <select id="input-role" name="role" class="login-input filter-select w-full">
+          <option value="mahalla_worker">Mahalla xodimi</option>
+          <option value="district_admin">Tuman hokimiyati xodimi</option>
+        </select>
+      </div>
+
+      <button type="submit" id="login-submit-btn" class="login-btn">
+        Tizimga kirish
+      </button>
+
+    </form>
+
+    <form id="register-form" class="hidden" role="tabpanel" aria-labelledby="tab-register-btn" novalidate>
+
+      <div id="reg-alert" class="hidden alert mb-4" role="alert" aria-live="polite"></div>
+
+      <div class="mb-4">
+        <label class="login-label" for="input-reg-contact" id="lbl-reg-contact">
+          Email yoki Telefon raqami
+        </label>
+        <input
+          type="text" id="input-reg-contact" name="contact"
+          class="login-input"
+          placeholder="+998 9X XXX XX XX yoki email"
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="login-label" for="input-reg-password" id="lbl-reg-password">
+          Parol o'rnatish
+        </label>
+        <input
+          type="password" id="input-reg-password" name="reg-password"
+          class="login-input"
+          placeholder="Kamida 6 belgi"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label class="login-label" for="input-reg-mahalla" id="lbl-reg-mahalla">
+          Mahalla / Tuman
+        </label>
+        <select id="input-reg-mahalla" name="mahalla" class="login-input filter-select w-full">
+
+        </select>
+      </div>
+
+      <button type="submit" id="register-submit-btn" class="login-btn">
+        Tasdiqlash kodi yuborish
+      </button>
+
+    </form>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
+

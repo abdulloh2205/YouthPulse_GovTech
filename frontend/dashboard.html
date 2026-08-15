@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YouthPulse — Dashboard" />
+  <title>Dashboard — YouthPulse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <aside id="sidebar">
+    <div class="px-5 py-6 border-b border-slate-200">
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-sky-200">YP</div>
+        <div>
+          <h1 class="text-[17px] font-extrabold text-slate-800 leading-tight">YouthPulse</h1>
+          <p class="text-[10px] font-semibold text-sky-600 uppercase tracking-widest mt-0.5">GovTech</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto" role="navigation" aria-label="Asosiy menyu">
+      <a href="#" id="nav-dashboard" class="nav-link active">
+        <div class="nav-icon" aria-hidden="true">📊</div>
+        <span data-i18n="nav_dashboard">Bosh sahifa</span>
+      </a>
+      <a href="#" id="nav-youth" class="nav-link">
+        <div class="nav-icon" aria-hidden="true">👥</div>
+        <span data-i18n="nav_youth">Yoshlar ro'yxati</span>
+      </a>
+      <a href="#" id="nav-map" class="nav-link">
+        <div class="nav-icon" aria-hidden="true">🗺️</div>
+        <span data-i18n="nav_map">Xarita</span>
+      </a>
+      <a href="#" id="nav-neet" class="nav-link">
+        <div class="nav-icon" aria-hidden="true">⚠️</div>
+        <span data-i18n="nav_neet">Ishsiz / Diqqat</span>
+      </a>
+      <a href="#" id="nav-referrals" class="nav-link">
+        <div class="nav-icon" aria-hidden="true">🔄</div>
+        <span data-i18n="nav_referrals">Yo'naltirishlar</span>
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-slate-200">
+      <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 mb-3">
+        <div class="flex items-center gap-3">
+          <div id="user-avatar" class="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">U</div>
+          <div class="flex-1 min-w-0">
+            <p id="user-name" class="text-sm font-semibold text-slate-800 truncate">Foydalanuvchi</p>
+            <p id="user-role-label" class="text-[11px] text-slate-500 truncate">Yuklanmoqda...</p>
+          </div>
+        </div>
+      </div>
+      <button id="logout-btn" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-600 text-sm font-semibold rounded-xl hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition-colors">
+        <span aria-hidden="true">🚪</span>
+        <span data-i18n="logout">Chiqish</span>
+      </button>
+    </div>
+  </aside>
+
+  <main id="main-content">
+    <header id="top-header">
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg" aria-label="Menyuni ochish">
+          ☰
+        </button>
+        <h2 id="page-title" class="text-xl font-bold text-slate-800 tracking-tight" data-i18n="nav_dashboard">Bosh sahifa</h2>
+        <div class="hidden sm:flex items-center gap-1.5 ml-4 px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs font-semibold border border-sky-100">
+          <span aria-hidden="true">🏛️</span>
+          <span data-i18n="district_name">Mirzo Ulug'bek tumani</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="relative w-64 hidden md:block">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
+          <input type="text" id="global-search" class="filter-input w-full pl-9 pr-4 py-2 bg-slate-50 rounded-full" placeholder="Qidirish..." data-i18n-placeholder="search_placeholder" />
+        </div>
+        <button id="theme-toggle" class="theme-btn" aria-label="Tema almashtirish">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <div class="lang-toggle" role="group" aria-label="Tilni tanlash">
+          <button class="lang-btn active" data-lang="uz" aria-pressed="true">UZ</button>
+          <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-6 md:p-8 max-w-7xl mx-auto space-y-8">
+
+      <section id="section-dashboard">
+        <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-8">
+          <div class="stat-card flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="stat_total">Jami yoshlar</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-total" class="text-2xl font-black text-slate-800 leading-none">...</h3>
+              <div class="stat-icon stat-icon-total text-blue-600">👥</div>
+            </div>
+          </div>
+          <div class="stat-card flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="stat_employed">Ishlamoqda</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-employed" class="text-2xl font-black text-slate-800 leading-none">...</h3>
+              <div class="stat-icon stat-icon-employed text-emerald-600">💼</div>
+            </div>
+          </div>
+          <div class="stat-card flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="stat_unemployed">Ishsiz</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-unemployed" class="text-2xl font-black text-slate-800 leading-none">...</h3>
+              <div class="stat-icon stat-icon-unemployed text-red-600">📉</div>
+            </div>
+          </div>
+          <div class="stat-card flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="stat_education">Ta'limda</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-education" class="text-2xl font-black text-slate-800 leading-none">...</h3>
+              <div class="stat-icon stat-icon-education text-cyan-600">🎓</div>
+            </div>
+          </div>
+          <div class="stat-card flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="stat_entrepreneurship">Tadbirkor</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-entrepreneurship" class="text-2xl font-black text-slate-800 leading-none">...</h3>
+              <div class="stat-icon stat-icon-entrepreneurship text-amber-600">🚀</div>
+            </div>
+          </div>
+          <div class="stat-card ring-1 ring-violet-200 shadow-violet-100 flex flex-col justify-between h-full">
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 leading-tight break-words" data-i18n="status_neet">Ishsiz</p>
+            <div class="flex items-center justify-between mt-auto">
+              <h3 id="stat-neet" class="text-2xl font-black text-violet-700 leading-none">...</h3>
+              <div class="stat-icon stat-icon-neet text-violet-600">⚠️</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="glass p-6 lg:col-span-2">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-bold text-slate-800 tracking-tight" data-i18n="mahalla_overview">Mahallalar bo'yicha ko'rinish</h3>
+            </div>
+            <div id="mahalla-bars" class="space-y-4">
+              <div class="flex justify-center py-8"><div class="spinner"></div></div>
+            </div>
+          </div>
+
+          <div class="glass p-6 bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200 flex flex-col justify-center items-center text-center">
+            <div class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center text-3xl mb-4">
+              ✨
+            </div>
+            <h3 class="font-bold text-slate-800 mb-2" data-i18n="govtech_title">GovTech Platformasi</h3>
+            <p class="text-sm text-slate-500" data-i18n="govtech_desc">Barcha ma'lumotlar real vaqt rejimida yangilanadi va xavfsiz saqlanadi.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-youth" class="hidden space-y-6">
+        <div class="glass p-4">
+          <div class="flex flex-wrap items-end gap-4">
+            <div class="flex-1 min-w-[200px]">
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5" data-i18n="col_mahalla">Mahalla</label>
+              <select id="filter-mahalla" class="filter-select w-full">
+                <option value="" data-i18n-opt="all_mahallas">Barcha mahallalar</option>
+                <option value="Yangi hayot" data-i18n-mahalla="Yangi hayot">Yangi hayot</option>
+                <option value="Bog'ishamol" data-i18n-mahalla="Bog'ishamol">Bog'ishamol</option>
+                <option value="Universitet" data-i18n-mahalla="Universitet">Universitet</option>
+                <option value="Do'stlik" data-i18n-mahalla="Do'stlik">Do'stlik</option>
+                <option value="Zarnigor" data-i18n-mahalla="Zarnigor">Zarnigor</option>
+                <option value="Qo'yliq" data-i18n-mahalla="Qo'yliq">Qo'yliq</option>
+                <option value="Olmazar" data-i18n-mahalla="Olmazar">Olmazar</option>
+              </select>
+            </div>
+            <div class="w-40 min-w-[140px]">
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5" data-i18n="col_status">Holat</label>
+              <select id="filter-status" class="filter-select w-full">
+                <option value="" data-i18n-opt="all_statuses">Barcha holatlar</option>
+                <option value="employed" data-i18n-opt="status_employed">Ishlamoqda</option>
+                <option value="unemployed" data-i18n-opt="status_unemployed">Ishsiz</option>
+                <option value="education" data-i18n-opt="status_education">Ta'limda</option>
+                <option value="entrepreneurship" data-i18n-opt="status_entrepreneurship">Tadbirkor</option>
+                <option value="neet" data-i18n-opt="status_neet">NEET</option>
+                <option value="needs_clarification" data-i18n-opt="status_clarification">Aniqlashtirish</option>
+              </select>
+            </div>
+            <div class="w-32 min-w-[120px]">
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Jins</label>
+              <select id="filter-gender" class="filter-select w-full">
+                <option value="" data-i18n-opt="all_genders">Barcha</option>
+                <option value="male" data-i18n-opt="male">Erkak</option>
+                <option value="female" data-i18n-opt="female">Ayol</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-2 h-10 px-3 bg-slate-50 border border-slate-200 rounded-lg">
+              <input type="checkbox" id="filter-needs-support" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500" />
+              <label for="filter-needs-support" class="text-sm font-medium text-slate-700 cursor-pointer" data-i18n="needs_support_filter">Yordam kerak</label>
+            </div>
+            <button id="filter-reset" class="h-10 px-4 text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors" data-i18n="reset_filters">
+              Tozalash
+            </button>
+          </div>
+        </div>
+
+        <div class="glass overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="youth-table">
+              <thead>
+                <tr>
+                  <th class="w-16" data-i18n="col_id">ID</th>
+                  <th data-i18n="col_name">F.I.Sh.</th>
+                  <th data-i18n="col_profession">Kasb/O'qish</th>
+                  <th class="w-20" data-i18n="col_age">Yosh</th>
+                  <th data-i18n="col_mahalla">Mahalla</th>
+                  <th class="w-40" data-i18n="col_status">Holat</th>
+                  <th class="w-24 text-center" data-i18n="col_ai_risk">AI Xavf</th>
+                  <th class="w-32" data-i18n="col_updated">Yangilangan</th>
+                  <th class="w-40 text-right" data-i18n="col_actions">Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="youth-table-body">
+              </tbody>
+            </table>
+          </div>
+
+          <div class="px-5 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div class="text-sm text-slate-500">
+              <span data-i18n="total_results">Natija:</span> <span id="result-count" class="font-bold text-slate-700">0</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div id="pagination-info" class="text-sm text-slate-500 font-medium hidden sm:block"></div>
+              <div id="pagination-controls" class="flex items-center gap-1"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-map" class="hidden">
+        <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-800" data-i18n="geo_grid_title">Hududlar bo'yicha tahlil</h3>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="geo_grid_subtitle">Mahallalar kesimida NEET va bandlik holati</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="geo-filter-btn active px-4 py-2 text-sm font-semibold rounded-lg bg-slate-800 text-white border-transparent" data-filter="all" data-i18n="filter_all_zones">Barchasi</button>
+            <button class="geo-filter-btn px-4 py-2 text-sm font-semibold rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200" data-filter="red" data-i18n="filter_red_zone">Qizil hudud</button>
+            <button class="geo-filter-btn px-4 py-2 text-sm font-semibold rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200" data-filter="green" data-i18n="filter_green_zone">Yashil hudud</button>
+          </div>
+        </div>
+        <div id="geo-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        </div>
+      </section>
+
+      <section id="section-neet" class="hidden">
+        <div class="mb-6">
+          <h3 class="text-xl font-extrabold text-slate-800" data-i18n="neet_title">NEET va Diqqat Talab Etuvchi Yoshlar</h3>
+          <p class="text-slate-500 text-sm mt-1" data-i18n="neet_subtitle">Aniqlashtirish va manzilli ishlash tavsiya qilinadi</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="neet-list">
+          <div class="flex justify-center py-12 col-span-full"><div class="spinner"></div></div>
+        </div>
+      </section>
+
+      <section id="section-referrals" class="hidden">
+        <div class="mb-6">
+          <h3 class="text-xl font-extrabold text-slate-800" data-i18n="referrals_title">Yo'naltirish Mexanizmi</h3>
+          <p class="text-slate-500 text-sm mt-1">Ko'mak turlari bo'yicha integratsiyalashgan tashkilotlar</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="referral-programs">
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <button id="ai-fab" aria-label="AI Yordamchini ochish">
+    <div class="pulse-ring" aria-hidden="true"></div>
+    <div class="pulse-ring-2" aria-hidden="true"></div>
+    ✨
+  </button>
+
+  <div id="ai-chat-panel" aria-hidden="true">
+    <div id="ai-chat-header">
+      <div class="ai-avatar">✨</div>
+      <div>
+        <h3 class="text-sm font-bold text-white tracking-wide" data-i18n="ai_name">AI-Yordamchi</h3>
+        <div class="flex items-center gap-1.5 mt-0.5">
+          <div class="ai-status-dot"></div>
+          <span class="text-[10px] text-sky-100 font-medium" data-i18n="ai_status">Faol · Yoshlar bandligi bo'yicha maslahat</span>
+        </div>
+      </div>
+      <button id="ai-close-btn" aria-label="Yopish">✕</button>
+    </div>
+    <div id="ai-messages" role="log" aria-live="polite">
+    </div>
+    <div id="ai-input-area">
+      <textarea id="ai-input" rows="1" placeholder="Yozishni boshlang..."></textarea>
+      <button id="ai-send-btn" aria-label="Xabarni yuborish">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="youth-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" id="youth-modal-content">
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/aiAnalyticsEngine.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script src="js/aiAssistant.js"></script>
+
+  <script>
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    if(mobileBtn && sidebar) {
+      mobileBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('mobile-open');
+      });
+      document.addEventListener('click', (e) => {
+        if(!sidebar.contains(e.target) && !mobileBtn.contains(e.target)) {
+          sidebar.classList.remove('mobile-open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

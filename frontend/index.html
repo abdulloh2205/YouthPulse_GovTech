@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YouthPulse — Yoshlar bandligini intellektual boshqarish tizimi. Mahallalar va hokimiyatlar uchun monitoring va NEET aniqlash platformasi." />
+  <title>YouthPulse — Yoshlar Bandligi Monitoring Tizimi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="landing-body">
+
+  <header id="site-header" class="landing-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="header-logo" aria-label="YouthPulse bosh sahifa">
+        <div class="logo-mark">YP</div>
+        <div class="logo-text-wrap">
+          <span class="logo-name">YouthPulse</span>
+          <span class="logo-tag">GovTech</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Asosiy navigatsiya">
+        <a href="#features" class="nav-text-link" data-i18n="nav_features">Imkoniyatlar</a>
+        <a href="#stats" class="nav-text-link" data-i18n="nav_stats">Ko'rsatkichlar</a>
+        <a href="#about" class="nav-text-link" data-i18n="nav_about">Haqida</a>
+      </nav>
+
+      <div class="header-controls">
+        <div class="lang-toggle-group" role="group" aria-label="Til tanlash">
+          <button id="lang-uz" class="lang-pill active" data-lang="uz" onclick="setLang('uz')">UZ</button>
+          <button id="lang-ru" class="lang-pill" data-lang="ru" onclick="setLang('ru')">RU</button>
+        </div>
+
+        <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()" aria-label="Tema almashtirish">
+          <span id="theme-icon">🌙</span>
+        </button>
+
+        <a href="login.html" class="btn-outline" data-i18n="btn_login">Kirish</a>
+        <a href="login.html" class="btn-primary" data-i18n="btn_register">Ro'yxatdan o'tish</a>
+      </div>
+
+      <button id="mobile-menu-btn" class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menyuni ochish" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <a href="#features" class="mobile-nav-link" data-i18n="nav_features">Imkoniyatlar</a>
+      <a href="#stats" class="mobile-nav-link" data-i18n="nav_stats">Ko'rsatkichlar</a>
+      <a href="#about" class="mobile-nav-link" data-i18n="nav_about">Haqida</a>
+      <div class="mobile-menu-actions">
+        <a href="login.html" class="btn-outline" data-i18n="btn_login">Kirish</a>
+        <a href="login.html" class="btn-primary" data-i18n="btn_register">Ro'yxatdan o'tish</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-shape shape-1" aria-hidden="true"></div>
+      <div class="hero-bg-shape shape-2" aria-hidden="true"></div>
+
+      <div class="section-container hero-container">
+
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            <span data-i18n="hero_badge">GovTech Hackathon 2026 — Mirzo Ulug'bek tumani</span>
+          </div>
+
+          <h1 class="hero-title" id="hero-title-el"></h1>
+
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
+            Mahallalar va tuman hokimiyati uchun real-vaqt monitoring, NEET yoshlarni aniqlash va AI-asosida yo'naltirish platformasi. Barcha ma'lumotlar — bitta ekranda.
+          </p>
+
+          <div class="hero-actions">
+            <a href="login.html" class="btn-primary btn-lg" id="hero-cta">
+              <span aria-hidden="true">🚀</span>
+              <span data-i18n="hero_cta">Tizimni sinab ko'rish</span>
+            </a>
+            <a href="#features" class="btn-ghost btn-lg">
+              <span aria-hidden="true">▶</span>
+              <span data-i18n="hero_learn">Batafsil</span>
+            </a>
+          </div>
+
+          <div class="hero-trust" aria-label="Ishonch ko'rsatkichlari">
+            <div class="trust-item">
+              <strong>25+</strong>
+              <span data-i18n="trust_youth">Yoshlar profili</span>
+            </div>
+            <div class="trust-divider" aria-hidden="true"></div>
+            <div class="trust-item">
+              <strong>7</strong>
+              <span data-i18n="trust_mahalla">Mahalla qamrovi</span>
+            </div>
+            <div class="trust-divider" aria-hidden="true"></div>
+            <div class="trust-item">
+              <strong>AI</strong>
+              <span data-i18n="trust_ai">Intellektual tahlil</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="dashboard-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+              <span class="mockup-title">YouthPulse Dashboard</span>
+            </div>
+            <div class="mockup-stats">
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-icon employed">💼</div>
+                <div>
+                  <div class="mockup-stat-num">9</div>
+                  <div class="mockup-stat-label" data-i18n="mockup_employed">Ishlamoqda</div>
+                </div>
+              </div>
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-icon neet">⚠️</div>
+                <div>
+                  <div class="mockup-stat-num">3</div>
+                  <div class="mockup-stat-label" data-i18n="mockup_neet">NEET</div>
+                </div>
+              </div>
+              <div class="mockup-stat-card">
+                <div class="mockup-stat-icon edu">🎓</div>
+                <div>
+                  <div class="mockup-stat-num">5</div>
+                  <div class="mockup-stat-label" data-i18n="mockup_edu">Ta'limda</div>
+                </div>
+              </div>
+            </div>
+            <div class="mockup-bar-section">
+              <div class="mockup-bar-label" data-i18n="mockup_mah1">Yangi hayot</div>
+              <div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:78%"></div></div>
+            </div>
+            <div class="mockup-bar-section">
+              <div class="mockup-bar-label" data-i18n="mockup_mah2">Bog'ishamol</div>
+              <div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:62%"></div></div>
+            </div>
+            <div class="mockup-bar-section">
+              <div class="mockup-bar-label" data-i18n="mockup_mah3">Universitet</div>
+              <div class="mockup-bar-track"><div class="mockup-bar-fill" style="width:45%"></div></div>
+            </div>
+            <div class="mockup-ai-bubble">
+              🤖 <em data-i18n="mockup_ai">AI: NEET holatidagi 3 ta yoshga uy tashrifi tavsiya qilinadi...</em>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="features" class="features-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="features_tag">Imkoniyatlar</span>
+          <h2 class="section-title" data-i18n="features_title">Tizim nima beradi?</h2>
+          <p class="section-desc" data-i18n="features_desc">Har bir mahalla xodimidan tuman hokimiyatigacha — to'liq raqamli boshqaruv.</p>
+        </div>
+
+        <div class="features-grid">
+
+          <div class="feature-card" tabindex="0">
+            <div class="feature-icon-wrap feature-icon-blue">
+              <span class="feature-icon" aria-hidden="true">👤</span>
+            </div>
+            <h3 class="feature-title" data-i18n="f1_title">Yagona raqamli profil</h3>
+            <p class="feature-desc" data-i18n="f1_desc">Har bir yosh uchun to'liq raqamli profil: ta'lim, bandlik holati, tarix va ko'rsatkichlar bitta joyda.</p>
+            <ul class="feature-list">
+              <li data-i18n="f1_l1">Shaxsiy ma'lumotlar va kontakt</li>
+              <li data-i18n="f1_l2">Bandlik holati tarixi</li>
+              <li data-i18n="f1_l3">Yo'naltirish va yordam yozuvlari</li>
+            </ul>
+          </div>
+
+          <div class="feature-card feature-card-accent" tabindex="0">
+            <div class="feature-icon-wrap feature-icon-violet">
+              <span class="feature-icon" aria-hidden="true">⚠️</span>
+            </div>
+            <h3 class="feature-title" data-i18n="f2_title">NEET holatini aniqlash</h3>
+            <p class="feature-desc" data-i18n="f2_desc">Tizim avtomatik ravishda ta'lim, ish yoki kasbiy o'qishdan tashqarida qolgan yoshlarni aniqlaydi va xabardor qiladi.</p>
+            <ul class="feature-list">
+              <li data-i18n="f2_l1">Avtomatik risk-reytingi</li>
+              <li data-i18n="f2_l2">Erta ogohlantirish tizimi</li>
+              <li data-i18n="f2_l3">Manzilli ish va tashrif rejasi</li>
+            </ul>
+          </div>
+
+          <div class="feature-card" tabindex="0">
+            <div class="feature-icon-wrap feature-icon-emerald">
+              <span class="feature-icon" aria-hidden="true">🤖</span>
+            </div>
+            <h3 class="feature-title" data-i18n="f3_title">AI-Tahlil va Tavsiya</h3>
+            <p class="feature-desc" data-i18n="f3_desc">Gemini API asosidagi AI-konsultant statistikani tahlil qiladi va har bir yosh uchun eng mos yo'naltirish dasturini tavsiya etadi.</p>
+            <ul class="feature-list">
+              <li data-i18n="f3_l1">Natural til interfeysi (UZ/RU)</li>
+              <li data-i18n="f3_l2">Hisobot va tavsiya generatsiyasi</li>
+              <li data-i18n="f3_l3">Kontekstga asoslangan javoblar</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="stats-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="stats_tag">Demo ko'rsatkichlar</span>
+          <h2 class="section-title" data-i18n="stats_title">Tizim ishlaydi va natija beradi</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-block">
+            <div class="stat-number" style="color:#0284C7">25</div>
+            <div class="stat-label" data-i18n="s1">Ro'yxatdagi yoshlar</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number" style="color:#059669">9</div>
+            <div class="stat-label" data-i18n="s2">Ishlamoqda</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number" style="color:#7C3AED">3</div>
+            <div class="stat-label" data-i18n="s3">NEET aniqlandi</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number" style="color:#D97706">4</div>
+            <div class="stat-label" data-i18n="s4">Tadbirkor</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number" style="color:#0284C7">7</div>
+            <div class="stat-label" data-i18n="s5">Mahalla qamrovi</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-number" style="color:#DC2626">100%</div>
+            <div class="stat-label" data-i18n="s6">Raqamli monitoring</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="how-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="how_tag">Qanday ishlaydi?</span>
+          <h2 class="section-title" data-i18n="how_title">Oson, tez, samarali</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-number">01</div>
+            <h3 class="step-title" data-i18n="step1_title">Tizimga kirish</h3>
+            <p class="step-desc" data-i18n="step1_desc">Mahalla xodimi yoki tuman hokimiyati xodimi o'z hisob ma'lumotlari bilan tizimga kiradi.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">→</div>
+          <div class="step-item">
+            <div class="step-number">02</div>
+            <h3 class="step-title" data-i18n="step2_title">Monitoring</h3>
+            <p class="step-desc" data-i18n="step2_desc">Dashboard orqali yoshlar holatini kuzatib borish, NEET va diqqat talab qiluvchi holatlarni ko'rish.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">→</div>
+          <div class="step-item">
+            <div class="step-number">03</div>
+            <h3 class="step-title" data-i18n="step3_title">AI Maslahat</h3>
+            <p class="step-desc" data-i18n="step3_desc">AI-konsultantdan savollar so'rash, tavsiyalar olish va yo'naltirish mexanizmini ishga tushirish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-container">
+        <div class="cta-card">
+          <div class="section-container text-center">
+            <h2 class="text-3xl font-bold mb-6 text-white" data-i18n="cta_title">Tizimni sinab ko'ring</h2>
+            <div class="flex justify-center gap-4 mt-8">
+              <a href="login.html" class="btn-primary btn-lg bg-white text-sky-600 border-white hover:bg-slate-50 shadow-md">
+                <span aria-hidden="true">🚀</span>
+                <span data-i18n="cta_btn">Tizimga kirish</span>
+              </a>
+              <a href="login.html" class="btn-outline btn-lg border-white text-white hover:bg-white/10">
+                <span data-i18n="cta_register">Ro'yxatdan o'tish</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="section-container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-mark logo-mark-sm">YP</div>
+          <span class="logo-name">YouthPulse</span>
+        </div>
+        <p class="footer-tagline" data-i18n="footer_tagline">Yoshlar kelajagi — davlat mas'uliyati.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="footer_product">Mahsulot</h4>
+          <a href="#features" class="footer-link" data-i18n="nav_features">Imkoniyatlar</a>
+          <a href="#stats" class="footer-link" data-i18n="nav_stats">Ko'rsatkichlar</a>
+          <a href="login.html" class="footer-link" data-i18n="btn_login">Kirish</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="footer_contact">Aloqa</h4>
+          <span class="footer-link">Mirzo Ulug'bek tumani</span>
+          <span class="footer-link">Toshkent, O'zbekiston</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="section-container footer-bottom-inner">
+        <span>YouthPulse GovTech &copy; 2026</span>
+        <span data-i18n="footer_hackathon">GovTech Hackathon 2026 loyihasi</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>
