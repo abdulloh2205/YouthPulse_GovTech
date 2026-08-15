@@ -1,5 +1,40 @@
-import { fetchStats, fetchYouthList, fetchMahallas, fetchYouthById } from './api.js';
-import { MOCK_YOUTH_DATA } from './mockData.js';
+const MOCK_YOUTH_DATA = [
+  { id: "Y001", fullName: "Azimov Sardor", age: 22, mahalla: "Yangi hayot", status: "employed", gender: "male", occupation: "Frontend Dasturchi", education: "TATU", lastUpdated: "2026-08-14", needsSupport: false },
+  { id: "Y002", fullName: "Nazarova Madina", age: 19, mahalla: "Bog'ishamol", status: "neet", gender: "female", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["employment"], history: [], lastUpdated: "2026-08-10" },
+  { id: "Y003", fullName: "Tolipov Jasur", age: 24, mahalla: "Universitet", status: "entrepreneurship", gender: "male", occupation: "Tadbirkor", education: "O'rta maxsus", lastUpdated: "2026-08-12", needsSupport: false },
+  { id: "Y004", fullName: "Rahimova Shahnoza", age: 21, mahalla: "Do'stlik", status: "education", gender: "female", occupation: "Talaba", education: "TDIU", lastUpdated: "2026-08-11", needsSupport: false },
+  { id: "Y005", fullName: "Qosimov Alisher", age: 20, mahalla: "Zarnigor", status: "unemployed", gender: "male", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["vocational"], history: [], lastUpdated: "2026-08-09" },
+  { id: "Y006", fullName: "Ahmedov Sanjar", age: 23, mahalla: "Qo'yliq", status: "employed", gender: "male", occupation: "Marketolog", education: "Oliy", lastUpdated: "2026-08-13", needsSupport: false },
+  { id: "Y007", fullName: "Karimova Ziyoda", age: 18, mahalla: "Olmazar", status: "needs_clarification", gender: "female", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["clarification"], history: [], lastUpdated: "2026-08-08" },
+  { id: "Y008", fullName: "Rustamov Doston", age: 25, mahalla: "Yangi hayot", status: "neet", gender: "male", occupation: "", education: "O'rta maxsus", needsSupport: true, supportTypes: ["psychological", "employment"], history: [], lastUpdated: "2026-08-07" },
+  { id: "Y009", fullName: "Salimova Nargiza", age: 22, mahalla: "Bog'ishamol", status: "education", gender: "female", occupation: "Magistrant", education: "Oliy", lastUpdated: "2026-08-15", needsSupport: false },
+  { id: "Y010", fullName: "Olimov Bekzod", age: 21, mahalla: "Universitet", status: "unemployed", gender: "male", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["vocational"], history: [], lastUpdated: "2026-08-05" },
+  { id: "Y011", fullName: "Jalolova Malika", age: 24, mahalla: "Do'stlik", status: "employed", gender: "female", occupation: "O'qituvchi", education: "Oliy", lastUpdated: "2026-08-14", needsSupport: false },
+  { id: "Y012", fullName: "Tursunov Akmal", age: 19, mahalla: "Zarnigor", status: "entrepreneurship", gender: "male", occupation: "Sartarosh", education: "O'rta", lastUpdated: "2026-08-12", needsSupport: false },
+  { id: "Y013", fullName: "Ismoilova Sevara", age: 20, mahalla: "Qo'yliq", status: "education", gender: "female", occupation: "Talaba", education: "TTA", lastUpdated: "2026-08-11", needsSupport: false },
+  { id: "Y014", fullName: "Shukurov Anvar", age: 23, mahalla: "Olmazar", status: "neet", gender: "male", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["employment"], history: [], lastUpdated: "2026-08-06" },
+  { id: "Y015", fullName: "Xalilova Iroda", age: 25, mahalla: "Yangi hayot", status: "employed", gender: "female", occupation: "Hamshira", education: "O'rta maxsus", lastUpdated: "2026-08-13", needsSupport: false },
+  { id: "Y016", fullName: "Bo'riyev Shohrux", age: 22, mahalla: "Bog'ishamol", status: "needs_clarification", gender: "male", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["clarification"], history: [], lastUpdated: "2026-08-09" },
+  { id: "Y017", fullName: "Qudratova Nilufar", age: 21, mahalla: "Universitet", status: "education", gender: "female", occupation: "Talaba", education: "O'zMU", lastUpdated: "2026-08-15", needsSupport: false },
+  { id: "Y018", fullName: "Murodov Ilhom", age: 24, mahalla: "Do'stlik", status: "unemployed", gender: "male", occupation: "", education: "Oliy", needsSupport: true, supportTypes: ["employment"], history: [], lastUpdated: "2026-08-10" },
+  { id: "Y019", fullName: "Zokirova Asal", age: 18, mahalla: "Zarnigor", status: "neet", gender: "female", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["vocational"], history: [], lastUpdated: "2026-08-08" },
+  { id: "Y020", fullName: "Umarov Farhod", age: 25, mahalla: "Qo'yliq", status: "entrepreneurship", gender: "male", occupation: "Savdo do'koni", education: "O'rta maxsus", lastUpdated: "2026-08-14", needsSupport: false },
+  { id: "Y021", fullName: "Rasulova Gulnoza", age: 20, mahalla: "Olmazar", status: "education", gender: "female", occupation: "Talaba", education: "JIDU", lastUpdated: "2026-08-12", needsSupport: false },
+  { id: "Y022", fullName: "Norov Temur", age: 23, mahalla: "Yangi hayot", status: "employed", gender: "male", occupation: "Muhandis", education: "Oliy", lastUpdated: "2026-08-11", needsSupport: false },
+  { id: "Y023", fullName: "Ergasheva Laylo", age: 22, mahalla: "Bog'ishamol", status: "unemployed", gender: "female", occupation: "", education: "O'rta maxsus", needsSupport: true, supportTypes: ["vocational"], history: [], lastUpdated: "2026-08-07" },
+  { id: "Y024", fullName: "Jo'rayev Aziz", age: 19, mahalla: "Universitet", status: "neet", gender: "male", occupation: "", education: "O'rta", needsSupport: true, supportTypes: ["psychological"], history: [], lastUpdated: "2026-08-06" },
+  { id: "Y025", fullName: "Yo'ldosheva Kamola", age: 24, mahalla: "Do'stlik", status: "employed", gender: "female", occupation: "Hisobchi", education: "Oliy", lastUpdated: "2026-08-15", needsSupport: false }
+];
+
+const MOCK_MAHALLAS = [
+  { name: "Yangi hayot", total: 45, neetCount: 5 },
+  { name: "Bog'ishamol", total: 30, neetCount: 3 },
+  { name: "Universitet", total: 25, neetCount: 2 },
+  { name: "Do'stlik", total: 25, neetCount: 5 },
+  { name: "Zarnigor", total: 40, neetCount: 15 },
+  { name: "Qo'yliq", total: 35, neetCount: 1 },
+  { name: "Olmazar", total: 50, neetCount: 8 }
+];
 
 const i18n = {
   uz: {
@@ -74,6 +109,7 @@ const i18n = {
     geo_grid_subtitle:   "Mahallalar kesimida ishsizlik va bandlik holati",
     filter_all_zones:    "Barchasi",
     filter_red_zone:     "Qizil hudud",
+    filter_yellow_zone:  "Sariq hudud",
     filter_green_zone:   "Yashil hudud",
   },
   ru: {
@@ -148,6 +184,7 @@ const i18n = {
     geo_grid_subtitle:   "Статус безработицы и занятости в разрезе махаллей",
     filter_all_zones:    "Все",
     filter_red_zone:     "Красная зона",
+    filter_yellow_zone:  "Желтая зона",
     filter_green_zone:   "Зеленая зона",
   },
 };
@@ -377,16 +414,7 @@ function renderUserInfo() {
 }
 
 async function loadStats() {
-  try {
-    const res = await fetchStats();
-    if (res.success) {
-      state.stats = res.data;
-    } else {
-      throw new Error(res.error || 'Server error');
-    }
-  } catch (err) {
-    state.stats = { total: 125, employedCount: 65, unemployedCount: 20, neetCount: 15, educationCount: 15, entrepreneurshipCount: 10 };
-  }
+  state.stats = { total: 125, employedCount: 65, unemployedCount: 20, neetCount: 15, educationCount: 15, entrepreneurshipCount: 10 };
   renderStats();
 }
 
@@ -408,21 +436,7 @@ function setStatEl(id, value) {
 }
 
 async function loadMahallas() {
-  try {
-    const res = await fetchMahallas();
-    if (res.success) {
-      state.mahallas = res.data;
-    } else {
-      throw new Error(res.error || 'Server error');
-    }
-  } catch (err) {
-    state.mahallas = [
-      { name: "Yangi hayot", total: 45, neetCount: 5 },
-      { name: "Bog'ishamol", total: 30, neetCount: 3 },
-      { name: "Universitet", total: 25, neetCount: 2 },
-      { name: "Do'stlik", total: 25, neetCount: 5 }
-    ];
-  }
+  state.mahallas = MOCK_MAHALLAS;
   renderMahallaBars();
 }
 
@@ -455,47 +469,21 @@ function renderMahallaBars() {
 }
 
 async function loadYouth() {
-  const tbody = document.getElementById('youth-table-body');
-  if (tbody) {
-    tbody.innerHTML = `<tr><td colspan="7"><div class="flex justify-center py-12"><div class="spinner"></div></div></td></tr>`;
+  let fallback = MOCK_YOUTH_DATA;
+  if (state.filters.mahalla) fallback = fallback.filter(y => y.mahalla === state.filters.mahalla);
+  if (state.filters.status) fallback = fallback.filter(y => y.status === state.filters.status);
+  if (state.filters.gender) fallback = fallback.filter(y => y.gender === state.filters.gender);
+  if (state.filters.needsSupport) fallback = fallback.filter(y => y.needsSupport);
+  if (state.filters.search) {
+    const q = state.filters.search.toLowerCase();
+    fallback = fallback.filter(y => y.fullName.toLowerCase().includes(q) || y.id.toLowerCase().includes(q));
   }
-
-  try {
-    const filters = {
-      ...state.filters,
-      needsSupport: state.filters.needsSupport || undefined,
-      page: state.pagination.page,
-      limit: state.pagination.limit,
-    };
-
-    if (!filters.needsSupport) delete filters.needsSupport;
-
-    const res = await fetchYouthList(filters);
-    if (res.success) {
-      state.youthData = res.data;
-      state.pagination.total = res.total;
-      state.pagination.totalPages = res.totalPages;
-      state.pagination.page = res.page;
-    } else {
-      throw new Error(res.error || 'Server error');
-    }
-  } catch (err) {
-    let fallback = MOCK_YOUTH_DATA;
-    if (state.filters.mahalla) fallback = fallback.filter(y => y.mahalla === state.filters.mahalla);
-    if (state.filters.status) fallback = fallback.filter(y => y.status === state.filters.status);
-    if (state.filters.gender) fallback = fallback.filter(y => y.gender === state.filters.gender);
-    if (state.filters.needsSupport) fallback = fallback.filter(y => y.needsSupport);
-    if (state.filters.search) {
-      const q = state.filters.search.toLowerCase();
-      fallback = fallback.filter(y => y.fullName.toLowerCase().includes(q) || y.id.toLowerCase().includes(q));
-    }
-    
-    state.pagination.total = fallback.length;
-    state.pagination.totalPages = Math.ceil(fallback.length / state.pagination.limit) || 1;
-    
-    const start = (state.pagination.page - 1) * state.pagination.limit;
-    state.youthData = fallback.slice(start, start + state.pagination.limit);
-  }
+  
+  state.pagination.total = fallback.length;
+  state.pagination.totalPages = Math.ceil(fallback.length / state.pagination.limit) || 1;
+  
+  const start = (state.pagination.page - 1) * state.pagination.limit;
+  state.youthData = fallback.slice(start, start + state.pagination.limit);
   
   renderYouthTable();
   renderPagination();
@@ -703,53 +691,42 @@ window.openYouthModal = openYouthModal;
 window.closeModal = closeModal;
 window.referYouth = referYouth;
 
-async function loadNeetSection() {
+function loadNeetSection() {
   const container = document.getElementById('neet-list');
   if (!container) return;
 
-  try {
-    const res = await fetchYouthList({ status: 'neet', limit: 50 });
-    const nc = await fetchYouthList({ status: 'needs_clarification', limit: 50 });
-    let combined = [];
-    if (!res.success || !nc.success) {
-      const neets = MOCK_YOUTH_DATA.filter(y => y.status === 'neet');
-      const clarif = MOCK_YOUTH_DATA.filter(y => y.status === 'needs_clarification');
-      combined = [...neets, ...clarif];
-    } else {
-      combined = [...(res.data || []), ...(nc.data || [])];
-    }
+  const neets = MOCK_YOUTH_DATA.filter(y => y.status === 'neet');
+  const clarif = MOCK_YOUTH_DATA.filter(y => y.status === 'needs_clarification');
+  const combined = [...neets, ...clarif];
 
-    if (!combined.length) {
-      container.innerHTML = `<div class="empty-state"><div class="text-3xl mb-3">✅</div><p class="text-sm text-slate-400">${t('no_data')}</p></div>`;
-      return;
-    }
-
-    container.innerHTML = combined.map((y) => {
-      const cfg = STATUS_CONFIG[y.status] || {};
-      const supports = (y.supportTypes || []).map((s) => SUPPORT_LABELS[s]?.[state.lang] || s);
-      const mahallaName = state.lang === 'ru' ? (MAHALLA_RU[y.mahalla] || y.mahalla) : y.mahalla;
-      const fullName = state.lang === 'ru' ? transliterateUzToRu(y.fullName) : y.fullName;
-      return `
-        <div class="bg-white border border-slate-200 rounded-xl p-4 border-l-4 shadow-sm" style="border-left-color: ${cfg.dot || '#94A3B8'}">
-          <div class="flex items-start justify-between">
-            <div>
-              <div class="font-semibold text-slate-800">${fullName}</div>
-              <div class="text-xs text-slate-500 mt-0.5">${mahallaName} &bull; ${y.age} ${state.lang === 'ru' ? 'лет' : 'yosh'}</div>
-            </div>
-            <div class="flex gap-2 flex-shrink-0">
-              <span class="badge ${cfg.badge}">${statusLabel(y.status)}</span>
-              <button class="btn-action btn-view text-xs" onclick="openYouthModal('${y.id}')">
-                ${t('btn_view')}
-              </button>
-            </div>
-          </div>
-          ${supports.length ? `<div class="flex flex-wrap gap-1.5 mt-3">${supports.map((s) => `<span class="badge badge-neet text-[10px]">${s}</span>`).join('')}</div>` : ''}
-          <div class="text-xs text-slate-400 mt-2">${state.lang === 'ru' ? 'Последнее обновление:' : 'Oxirgi yangilanish:'} ${formatDate(y.lastUpdated)}</div>
-        </div>`;
-    }).join('');
-  } catch (err) {
-    container.innerHTML = `<p class="text-red-400 text-sm">${t('loading_error')}</p>`;
+  if (!combined.length) {
+    container.innerHTML = `<div class="empty-state"><div class="text-3xl mb-3">✅</div><p class="text-sm text-slate-400">${t('no_data')}</p></div>`;
+    return;
   }
+
+  container.innerHTML = combined.map((y) => {
+    const cfg = STATUS_CONFIG[y.status] || {};
+    const supports = (y.supportTypes || []).map((s) => SUPPORT_LABELS[s]?.[state.lang] || s);
+    const mahallaName = state.lang === 'ru' ? (MAHALLA_RU[y.mahalla] || y.mahalla) : y.mahalla;
+    const fullName = state.lang === 'ru' ? transliterateUzToRu(y.fullName) : y.fullName;
+    return `
+      <div class="bg-white border border-slate-200 rounded-xl p-4 border-l-4 shadow-sm" style="border-left-color: ${cfg.dot || '#94A3B8'}">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="font-semibold text-slate-800">${fullName}</div>
+            <div class="text-xs text-slate-500 mt-0.5">${mahallaName} &bull; ${y.age} ${state.lang === 'ru' ? 'лет' : 'yosh'}</div>
+          </div>
+          <div class="flex gap-2 flex-shrink-0">
+            <span class="badge ${cfg.badge}">${statusLabel(y.status)}</span>
+            <button class="btn-action btn-view text-xs" onclick="openYouthModal('${y.id}')">
+              ${t('btn_view')}
+            </button>
+          </div>
+        </div>
+        ${supports.length ? `<div class="flex flex-wrap gap-1.5 mt-3">${supports.map((s) => `<span class="badge badge-neet text-[10px]">${s}</span>`).join('')}</div>` : ''}
+        <div class="text-xs text-slate-400 mt-2">${state.lang === 'ru' ? 'Последнее обновление:' : 'Oxirgi yangilanish:'} ${formatDate(y.lastUpdated)}</div>
+      </div>`;
+  }).join('');
 }
 
 function renderReferralPrograms() {
@@ -793,7 +770,8 @@ function renderGeoGrid(filterType = 'all') {
   const filtered = state.mahallas.filter(m => {
     if (filterType === 'all') return true;
     const zone = getZone(m);
-    if (filterType === 'red') return zone === 'red' || zone === 'yellow';
+    if (filterType === 'red') return zone === 'red';
+    if (filterType === 'yellow') return zone === 'yellow';
     if (filterType === 'green') return zone === 'green';
     return true;
   });
