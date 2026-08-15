@@ -581,24 +581,17 @@ window.gotoPage = (page) => {
   loadYouth();
 };
 
-async function openYouthModal(id) {
+function openYouthModal(id) {
   const modal = document.getElementById('youth-modal');
   const content = document.getElementById('youth-modal-content');
   if (!modal || !content) return;
 
-  content.innerHTML = `<div class="flex justify-center py-12"><div class="spinner"></div></div>`;
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
 
   try {
-    const res = await fetchYouthById(id);
-    let y;
-    if (!res.success) {
-      y = MOCK_YOUTH_DATA.find((item) => item.id === id);
-      if (!y) throw new Error('Not found');
-    } else {
-      y = res.data;
-    }
+    const y = MOCK_YOUTH_DATA.find((item) => item.id === id);
+    if (!y) throw new Error('Not found');
     const cfg = STATUS_CONFIG[y.status] || {};
     const supports = (y.supportTypes || []).map((s) => SUPPORT_LABELS[s]?.[state.lang] || s);
     const mahallaName = state.lang === 'ru' ? (MAHALLA_RU[y.mahalla] || y.mahalla) : y.mahalla;
@@ -689,7 +682,13 @@ function referYouth(id) {
 
 window.openYouthModal = openYouthModal;
 window.closeModal = closeModal;
+window.closeYouthModal = closeModal;
 window.referYouth = referYouth;
+
+window.fetchYouthById = function(id) {
+  openYouthModal(id);
+};
+window.viewYouth = window.fetchYouthById;
 
 function loadNeetSection() {
   const container = document.getElementById('neet-list');
