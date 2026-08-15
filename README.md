@@ -15,16 +15,10 @@ YouthPulse — это инновационная платформа, разра�
 
 ## Установка и запуск
 
-1. **Клонируйте репозиторий:**
-   ```bash
-   git clone https://github.com/abdulloh2205/YouthPulse_GovTech.git
-   cd YouthPulse_GovTech
-   ```
-
-2. **Запуск Frontend:**
+1. **Запуск Frontend:**
    В текущей версии MVP frontend автономен и может работать локально без сервера. Достаточно открыть файл `frontend/index.html` в браузере.
 
-3. **Запуск Backend (для REST API):**
+2. **Запуск Backend (для REST API):**
    ```bash
    cd backend
    npm install
